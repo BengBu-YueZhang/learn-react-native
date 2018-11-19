@@ -55,6 +55,13 @@
 				<true/>
 			</dict>
 		</dict>
+		<dict>
+			<key>api.douban.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
 	</dict>
 </dict>
 </plist>
