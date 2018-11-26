@@ -12,8 +12,9 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import HomeScreen from './view/HomeScreen'
 import DetailsScreen from './view/DetailsScreen'
+import ModalScreen from './view/ModalScreen'
 
-const AppNavigator = createStackNavigator(
+const MainStack = createStackNavigator(
   {
     Home: { screen: HomeScreen },
     Details: { screen: DetailsScreen },
@@ -23,11 +24,44 @@ const AppNavigator = createStackNavigator(
   }
 )
 
-const AppContainer = createAppContainer(AppNavigator);
+const ModalStack = createStackNavigator(
+  {
+    MyModal: {
+      screen: ModalScreen,
+    }
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  }
+)
+
+
+const RootStack = createStackNavigator(
+  {
+    Main: {
+      screen: MainStack,
+    },
+    Modal: {
+      screen: ModalStack,
+    }
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  }
+)
+
+const AppContainer = createAppContainer(RootStack);
 
 class App extends React.Component {
   render() {
-    return <AppContainer />
+    return (
+      <AppContainer
+        onNavigationStateChange={(prevState, newState, action) => {
+        }}
+      />
+    )
   }
 }
 

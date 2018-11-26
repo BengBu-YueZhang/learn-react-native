@@ -1,40 +1,19 @@
-## navigation
+## full-screen modal
 
-### navigate
+> 全屏的模态框
 
-navigate会跳转到新的路由页面, 但是如果您已经在该路由上，那么它将无济于事
+### headerMode
 
-### push
+headerMode设置为'none'时将开启全屏模式
 
-push方法则会在每一次调用的时候, 都会向导航堆栈添加一条新路径。
+### mode
 
+mode为不同view之间的过渡效果(Android没有影响)
 
-```js
+### 嵌套堆栈
 
-const { navigate, push } = this.props.navigation;
-return (
-  <Button
-    title="Go to Detail 🍎"
-    onPress={() =>
-      navigate('Detail')
-    }
-  />
-  <Button
-    title="Go to Detail 🍐"
-    onPress={() =>
-      push('Detail')
-    }
-  />
-)
-```
+> 嵌套堆栈内部的createStackNavigator的配置优于外部的配置
 
-### goBack
+React Navigation会尝试在最近的导航上查找路径, 我们没有必要指定任何堆栈。Navigate从向上流动HomeScreen到MainStack，MainStack不能处理的路线MyModal，所以后来它流动起来RootStack它可以处理这条路线。
 
-goBack可以以编程的形式触发返回
-
-### 返回第一页 ☝️
-
-通常我们使用**navigate('Home')**返回首页, **navigate('Home')与push('Home')区别在于是否添加新的堆栈**。也可以通过**popToTop**返回到第一页
-
-
-
+![image](https://reactnavigation.org/docs/assets/modal/tree.png)
