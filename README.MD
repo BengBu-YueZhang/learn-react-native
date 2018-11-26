@@ -1,40 +1,33 @@
-## navigation
+## 问题
 
-### navigate
+### Unrecognized font family 'Ionicons' 
 
-navigate会跳转到新的路由页面, 但是如果您已经在该路由上，那么它将无济于事
+[解决方案](https://github.com/GeekyAnts/NativeBase/issues/72)
 
-### push
+## tab navigation
 
-push方法则会在每一次调用的时候, 都会向导航堆栈添加一条新路径。
+### createBottomTabNavigator
 
+创建底部标签栏
 
-```js
+#### 常用的属性
 
-const { navigate, push } = this.props.navigation;
-return (
-  <Button
-    title="Go to Detail 🍎"
-    onPress={() =>
-      navigate('Detail')
-    }
-  />
-  <Button
-    title="Go to Detail 🍐"
-    onPress={() =>
-      push('Detail')
-    }
-  />
-)
-```
+> 详情参看具体的[API文档](https://reactnavigation.org/docs/en/bottom-tab-navigator.html)
 
-### goBack
+##### tabBarIcon
 
-goBack可以以编程的形式触发返回
+tabBar的icon, 可以接受一个函数, 函数的参数的三个属性为focused(是否聚焦), horizontal(横竖屏模型), tintColor(active的Color)
 
-### 返回第一页 ☝️
+##### activeTintColor
 
-通常我们使用**navigate('Home')**返回首页, **navigate('Home')与push('Home')区别在于是否添加新的堆栈**。也可以通过**popToTop**返回到第一页
+激活的颜色
 
+##### inactiveTintColor
+
+默认的颜色
+
+#### 选项卡内部的堆栈
+
+使用嵌套的Stack即可, 详情请见分支的代码
 
 

@@ -9,17 +9,45 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createAppContainer, createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import HomeScreen from './view/HomeScreen'
 import DetailsScreen from './view/DetailsScreen'
+import UserScreen from './view/UserScreen'
 
-const AppNavigator = createStackNavigator(
+import Ionicons from 'react-native-vector-icons/Ionicons'
+
+const HomeStack = createStackNavigator(
   {
-    Home: { screen: HomeScreen },
+    Home: HomeScreen,
+    User: UserScreen,
+  }
+)
+
+const AppNavigator = createBottomTabNavigator(
+  {
+    Home: { screen: HomeStack },
     Details: { screen: DetailsScreen },
   },
   {
-    initialRouteName: "Home"
+    initialRouteName: "Home",
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        // console.log(focused) 是否聚集
+        // console.log(horizontal) 横屏
+        // console.log(tintColor) actice颜色
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'Home') {
+          return <Text>首页</Text>
+        } else if (routeName === 'Details') {
+          return <Text>详情页</Text>
+        }
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: 'tomato',
+      inactiveTintColor: 'gray'
+    },
   }
 )
 

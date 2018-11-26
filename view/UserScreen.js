@@ -1,21 +1,21 @@
 import React from 'react'
 import { Button } from 'react-native'
 
-class HomeScreen extends React.Component {
+class UserScreen extends React.Component {
   static navigationOptions = {
-    title: 'Home',
+    title: 'User',
   };
   render() {
     const { navigate } = this.props.navigation;
     return (
       <Button
-        title="Go to User"
+        title="Go to Home 😊"
         onPress={() =>
-          navigate('User', { name: 'Jane' })
+          navigate('Home', { name: 'Jane' })
         }
       />
     )
   }
 }
 
-export default HomeScreen
+export default UserScreen
