@@ -12,14 +12,25 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import HomeScreen from './view/HomeScreen'
 import DetailsScreen from './view/DetailsScreen'
+import UsersScreen from './view/UsersScreen'
 
 const AppNavigator = createStackNavigator(
   {
     Home: { screen: HomeScreen },
     Details: { screen: DetailsScreen },
+    Users: { screen: UsersScreen }
   },
   {
-    initialRouteName: "Home"
+    initialRouteName: "Home",
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#f4511e',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      }
+    }
   }
 )
 

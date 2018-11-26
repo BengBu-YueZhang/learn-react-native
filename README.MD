@@ -1,40 +1,50 @@
-## navigation
+## header bar
 
-### navigate
+### 配置标题
 
-navigate会跳转到新的路由页面, 但是如果您已经在该路由上，那么它将无济于事
-
-### push
-
-push方法则会在每一次调用的时候, 都会向导航堆栈添加一条新路径。
-
+> 使用静态属性navigationOptions
 
 ```js
 
-const { navigate, push } = this.props.navigation;
-return (
-  <Button
-    title="Go to Detail 🍎"
-    onPress={() =>
-      navigate('Detail')
-    }
-  />
-  <Button
-    title="Go to Detail 🍐"
-    onPress={() =>
-      push('Detail')
-    }
-  />
-)
+static navigationOptions = {
+  title: 'Home'
+}
 ```
 
-### goBack
+### navigationOptions中使用param
 
-goBack可以以编程的形式触发返回
+> navigationOptions由于是static属性, 在其内部是无法使用, 可以使用navigationOptions静态函数替代
 
-### 返回第一页 ☝️
+```js
 
-通常我们使用**navigate('Home')**返回首页, **navigate('Home')与push('Home')区别在于是否添加新的堆栈**。也可以通过**popToTop**返回到第一页
+// navigation对象
+// screenProps组件的props
+// navigationOptions默认值ß
+static navigationOptions = ({ navigation, screenProps, navigationOptions }) => {
+  return {
+    title: navigation.getParam('otherParam', 'A Nested Details Screen'),
+  }
+}
+```
 
+### setParams
 
+> setParams可以用来修改params
+
+```js
+
+navigation.setParams({ name: 'Updated!' })
+```
+
+### style
+
+1. headerStyle 标题头的样式
+2. headerTintColor 后退按钮以及标题的颜色
+3. headerTitleStyle 标题的字体
+
+### navigationOptions共享
+
+defaultNavigationOptions可以用来设置navigationOptions全局共享配置。defaultNavigationOptions的优先级低于页面的navigationOptions
+
+### 自定义组件替换标题
 
