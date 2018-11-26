@@ -19,7 +19,8 @@ const AppNavigator = createStackNavigator(
     Details: { screen: DetailsScreen },
   },
   {
-    initialRouteName: "Home"
+    initialRouteName: "Home",
+    headerBackTitle: 'fuck you'
   }
 )
 

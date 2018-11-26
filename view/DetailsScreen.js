@@ -3,7 +3,7 @@ import { Button } from 'react-native'
 
 class DetailsScreen extends React.Component {
   static navigationOptions = {
-    title: 'Details',
+    title: 'Details'
   };
   render() {
     const { push, navigate, popToTop } = this.props.navigation

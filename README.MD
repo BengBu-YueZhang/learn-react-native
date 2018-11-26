@@ -1,40 +1,19 @@
-## navigation
+## header button
 
-### navigate
+static navigationOptions为静态函数时, 可以自定义按钮的自定义行为
 
-navigate会跳转到新的路由页面, 但是如果您已经在该路由上，那么它将无济于事
+### headerBackTitle && headerTruncatedBackTitle
 
-### push
+headerBackTitle && headerTruncatedBackTitle必须在原始的view中定义
 
-push方法则会在每一次调用的时候, 都会向导航堆栈添加一条新路径。
+#### headerBackTitle
 
+IOS后退按钮的回退字符串
 
-```js
+#### headerTruncatedBackTitle
 
-const { navigate, push } = this.props.navigation;
-return (
-  <Button
-    title="Go to Detail 🍎"
-    onPress={() =>
-      navigate('Detail')
-    }
-  />
-  <Button
-    title="Go to Detail 🍐"
-    onPress={() =>
-      push('Detail')
-    }
-  />
-)
-```
+当headerBackTitle的字符串不适合屏幕时, headerTruncatedBackTitle会替代headerBackTitle
 
-### goBack
+### headerLeft
 
-goBack可以以编程的形式触发返回
-
-### 返回第一页 ☝️
-
-通常我们使用**navigate('Home')**返回首页, **navigate('Home')与push('Home')区别在于是否添加新的堆栈**。也可以通过**popToTop**返回到第一页
-
-
-
+headerLeft可以接受React组件可以用来覆盖默认的回退按钮
