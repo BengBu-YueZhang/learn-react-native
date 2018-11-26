@@ -1,32 +1,19 @@
 import React from 'react'
-import { Button } from 'react-native'
+import { Button, View, Text } from 'react-native'
 
 class DetailsScreen extends React.Component {
   static navigationOptions = {
     title: 'Details',
   };
   render() {
-    const { push, navigate, popToTop } = this.props.navigation
+    const { navigation } = this.props
     return (
       <React.Fragment>
-        <Button
-          title="Go to Home 😊"
-          onPress={() =>
-            push('Home')
-          }
-        />
-        <Button
-          title="Go to Home 😄"
-          onPress={() =>
-            navigate('Home')
-          }
-        />
-        <Button
-          title="Go to popToTop 😄"
-          onPress={() =>
-            popToTop()
-          }
-        />
+        <View>
+          <Text>
+            { navigation.getParam('name') }
+          </Text>
+        </View>
       </React.Fragment>
     )
   }
