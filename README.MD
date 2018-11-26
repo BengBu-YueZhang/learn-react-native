@@ -9,3 +9,4 @@
 - react-navigation-param react-navigation参数
 - react-navigation-header-bar react-navigation自定义标题头
 - react-navigation-header-button react-navigation自定义标题按钮
+- react-navigation-modal-full-screen react-navigation全屏
