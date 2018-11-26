@@ -6,14 +6,28 @@ class DetailsScreen extends React.Component {
     title: 'Details',
   };
   render() {
-    const { navigate } = this.props.navigation;
+    const { push, navigate, popToTop } = this.props.navigation
     return (
-      <Button
-        title="Go to Home"
-        onPress={() =>
-          navigate('Home', { name: 'Jane' })
-        }
-      />
+      <React.Fragment>
+        <Button
+          title="Go to Home 😊"
+          onPress={() =>
+            push('Home')
+          }
+        />
+        <Button
+          title="Go to Home 😄"
+          onPress={() =>
+            navigate('Home')
+          }
+        />
+        <Button
+          title="Go to popToTop 😄"
+          onPress={() =>
+            popToTop()
+          }
+        />
+      </React.Fragment>
     )
   }
 }
