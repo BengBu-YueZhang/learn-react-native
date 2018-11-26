@@ -3,7 +3,7 @@ import { Button } from 'react-native'
 
 class DetailsScreen extends React.Component {
   static navigationOptions = {
-    title: 'Details',
+    title: 'User',
   };
 
   componentDidMount () {
@@ -34,28 +34,34 @@ class DetailsScreen extends React.Component {
     //     console.debug('didBlur');
     //   }
     // )
-    // console.log('Detail componentDidMount')
+    // console.log('User componentDidMount')
   }
 
   componentWillUnmount () {
-    // console.log('Detail componentWillUnmount')
+    // console.log('User componentWillUnmount')
   }
 
   render() {
     const { push, navigate } = this.props.navigation
-    
+
     return (
       <React.Fragment>
         <Button
-          title="Go to Push User 😄"
+          title="Go to Push Home 😄"
           onPress={() =>
-            push('User')
+            push('Home')
           }
         />
         <Button
-          title="Go to Navigate User 😄"
+          title="Go to Navigate Home 😄"
           onPress={() =>
-            navigate('User')
+            navigate('Home')
+          }
+        />
+        <Button
+          title="Go to Navigate Detail 😄"
+          onPress={() =>
+            navigate('Details')
           }
         />
       </React.Fragment>

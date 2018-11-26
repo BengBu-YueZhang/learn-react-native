@@ -12,11 +12,13 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import HomeScreen from './view/HomeScreen'
 import DetailsScreen from './view/DetailsScreen'
+import UserScreen from './view/UserScreen'
 
 const AppNavigator = createStackNavigator(
   {
     Home: { screen: HomeScreen },
     Details: { screen: DetailsScreen },
+    User: { screen: UserScreen }
   },
   {
     initialRouteName: "Home"
