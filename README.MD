@@ -12,3 +12,4 @@
 - [react-navigation-modal-full-screen react-navigation全屏](https://github.com/BengBu-YueZhang/learn-react-native/tree/react-navigation-modal-full-screen)
 - [react-navigation-tabs react-navigation选项卡导航](https://github.com/BengBu-YueZhang/learn-react-native/tree/react-navigation-tabs)
 - [react-navigation-authentication react-navigation鉴权](https://github.com/BengBu-YueZhang/learn-react-native/tree/react-navigation-authentication)
+- [react-navigation-navigation-options-resolution react-navigation选项, 嵌套配置](https://github.com/BengBu-YueZhang/learn-react-native/tree/react-navigation-navigation-options-resolution)
