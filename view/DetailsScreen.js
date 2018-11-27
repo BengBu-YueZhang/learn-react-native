@@ -1,5 +1,6 @@
 import React from 'react'
-import { Button } from 'react-native'
+import { Button, Text } from 'react-native'
+import { SafeAreaView } from 'react-navigation'
 
 class DetailsScreen extends React.Component {
   static navigationOptions = {
@@ -8,26 +9,9 @@ class DetailsScreen extends React.Component {
   render() {
     const { push, navigate, popToTop } = this.props.navigation
     return (
-      <React.Fragment>
-        <Button
-          title="Go to Home 😊"
-          onPress={() =>
-            push('Home')
-          }
-        />
-        <Button
-          title="Go to Home 😄"
-          onPress={() =>
-            navigate('Home')
-          }
-        />
-        <Button
-          title="Go to popToTop 😄"
-          onPress={() =>
-            popToTop()
-          }
-        />
-      </React.Fragment>
+      <SafeAreaView>
+        <Text>Details</Text>
+      </SafeAreaView>
     )
   }
 }

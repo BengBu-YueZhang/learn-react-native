@@ -9,17 +9,55 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
 import HomeScreen from './view/HomeScreen'
 import DetailsScreen from './view/DetailsScreen'
+import ListScreen from './view/ListScreen'
+import UserScreen from './view/UserScreen'
+import OtherScreen from './view/OtherScreen'
+
+const StackHome = createStackNavigator(
+  {
+    Home: {
+      screen: HomeScreen
+    }
+  }
+)
+
+const StackDetails = createStackNavigator(
+  {
+    Details: {
+      screen: DetailsScreen
+    }
+  }
+)
+
+const StackA = createBottomTabNavigator(
+  {
+    Home: StackHome,
+    Details: StackDetails
+  },
+)
+
+
+const StackB = createStackNavigator(
+  {
+    List: {
+      screen: ListScreen
+    }
+  }
+)
 
 const AppNavigator = createStackNavigator(
   {
-    Home: { screen: HomeScreen },
-    Details: { screen: DetailsScreen },
+    A: StackA,
+    B: StackB
   },
   {
-    initialRouteName: "Home"
+    initialRouteName: 'A',
+    defaultNavigationOptions: {
+      header: null
+    }
   }
 )
 

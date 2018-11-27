@@ -1,40 +1,165 @@
-## navigation
+## Navigation options resolution
 
-### navigate
-
-navigate会跳转到新的路由页面, 但是如果您已经在该路由上，那么它将无济于事
-
-### push
-
-push方法则会在每一次调用的时候, 都会向导航堆栈添加一条新路径。
-
+navigation只会查看其直接子节点的配置, 例如设置每组堆栈的tabBarLabel
 
 ```js
 
-const { navigate, push } = this.props.navigation;
-return (
-  <Button
-    title="Go to Detail 🍎"
-    onPress={() =>
-      navigate('Detail')
+const StackA = createStackNavigator(
+  {
+    Home: {
+      screen: HomeScreen
+    },
+    Details: {
+      screen: DetailsScreen
     }
-  />
-  <Button
-    title="Go to Detail 🍐"
-    onPress={() =>
-      push('Detail')
+  }
+)
+
+const StackB = createStackNavigator(
+  {
+    List: {
+      screen: ListScreen
+    },
+    User: {
+      screen: UserScreen
     }
-  />
+  }
+)
+
+StackA.navigationOptions = {
+  tabBarLabel: '!',
+};
+
+StackB.navigationOptions = {
+  tabBarLabel: 'Settings!',
+};
+
+const AppNavigator = createBottomTabNavigator(
+  {
+    A: StackA,
+    B: StackB
+  },
+  {
+    defaultNavigationOptions: {
+      header: null
+    }
+  }
+)
+
+```
+
+### navigationOptions 与 defaultNavigationOptions
+
+```js
+
+// defaultNavigationOptions是navigator内部的默认选项
+// navigationOptions是直接作用与navigator的选项
+
+const HomeStack = createStackNavigator({ A }, {
+  defaultNavigationOptions: {
+    title: 'Welcome'
+  }
+})
+
+HomeStack.navigationOptions = {
+  tabBarLabel: 'Home!',
+};
+```
+
+### 在包含TabNavigator选项设置标题
+
+```js
+
+const StackA = createBottomTabNavigator(
+  {
+    Home: {
+      screen: HomeScreen
+    },
+    Details: {
+      screen: DetailsScreen
+    }
+  }
+)
+
+// 我们无法直接在HomeScreen设置标题
+// AppNavigator只会选择直接子节点的配置
+// createBottomTabNavigator是无法支持title的设置的
+// headerTitle的设置在StackA上
+StackA.navigationOptions = ({ navigation }) => {
+  const { routeName } = navigation.state.routes[navigation.state.index]
+
+  return {
+    headerTitle: routeName
+  };
+};
+
+const StackB = createStackNavigator(
+  {
+    List: {
+      screen: ListScreen
+    }
+  }
+)
+
+const AppNavigator = createStackNavigator(
+  {
+    A: StackA,
+    B: StackB
+  },
+  {
+    initialRouteName: 'A'
+  }
 )
 ```
 
-### goBack
+另外的方法, 直接针对Home, Details使用createStackNavigator创建堆栈, 外部的堆栈设置header为none
 
-goBack可以以编程的形式触发返回
+```js
 
-### 返回第一页 ☝️
+const StackHome = createStackNavigator(
+  {
+    Home: {
+      screen: HomeScreen
+    }
+  }
+)
 
-通常我们使用**navigate('Home')**返回首页, **navigate('Home')与push('Home')区别在于是否添加新的堆栈**。也可以通过**popToTop**返回到第一页
+const StackDetails = createStackNavigator(
+  {
+    Details: {
+      screen: DetailsScreen
+    }
+  }
+)
+
+const StackA = createBottomTabNavigator(
+  {
+    Home: StackHome,
+    Details: StackDetails
+  },
+)
 
 
+const StackB = createStackNavigator(
+  {
+    List: {
+      screen: ListScreen
+    }
+  }
+)
 
+const AppNavigator = createStackNavigator(
+  {
+    A: StackA,
+    B: StackB
+  },
+  {
+    initialRouteName: 'A',
+    defaultNavigationOptions: {
+      header: null
+    }
+  }
+)
+```
+
+### 隐藏特定屏幕的选项卡

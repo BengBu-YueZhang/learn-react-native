@@ -2,18 +2,18 @@ import React from 'react'
 import { Button, Text } from 'react-native'
 import { SafeAreaView } from 'react-navigation'
 
-class HomeScreen extends React.Component {
+class OtherScreen extends React.Component {
   static navigationOptions = {
-    title: 'Home',
+    title: 'Other',
   };
   render() {
     const { navigate } = this.props.navigation;
     return (
       <SafeAreaView>
-        <Text>Home</Text>
+        <Text>Other</Text>
       </SafeAreaView>
     )
   }
 }
 
-export default HomeScreen
+export default OtherScreen
