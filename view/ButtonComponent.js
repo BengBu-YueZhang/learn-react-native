@@ -1,10 +1,3 @@
-## withNavigation
-
-> withNavigation类似与withRouter一样的高阶组件, 可以将navigation传递给更深层的组件。
-
-
-```js
-
 import React from 'react'
 import { View, Text, Button } from 'react-native'
 import { withNavigation } from 'react-navigation'
@@ -23,5 +16,3 @@ class TestComponent extends React.Component {
 }
 
 export default withNavigation(TestComponent)
-
-```
