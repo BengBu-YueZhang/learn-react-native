@@ -11,6 +11,10 @@ class HomeScreen extends React.Component {
     return (
       <SafeAreaView>
         <Text>Home</Text>
+        <Button
+          title="go detail"
+          onPress={() => navigate('Details')} 
+        />
       </SafeAreaView>
     )
   }

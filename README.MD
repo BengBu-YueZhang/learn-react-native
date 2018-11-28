@@ -163,3 +163,44 @@ const AppNavigator = createStackNavigator(
 ```
 
 ### 隐藏特定屏幕的选项卡
+
+> 基于选项卡的导航器, 可能需要在部分View下，隐藏选项卡，这改怎么做呢？如👇的例子
+
+```js
+
+const StackA = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Details: DetailsScreen
+  },
+  {
+    defaultNavigationOptions: {
+      header: null
+    }
+  }
+)
+
+StackA.navigationOptions = ({ navigation }) => {
+  // DetailsViews隐藏tab
+  const routeName = navigation.state.routes[navigation.state.index].routeName
+  let tabBarVisible = true
+  if (routeName === 'Details') {
+    tabBarVisible = false
+  }
+  return {
+    tabBarVisible
+  }
+}
+
+const AppNavigator = createBottomTabNavigator(
+  {
+    A: StackA,
+    B: ListScreen
+  },
+  {
+    initialRouteName: 'B'
+  }
+)
+
+const AppContainer = createAppContainer(AppNavigator);
+```

@@ -16,48 +16,38 @@ import ListScreen from './view/ListScreen'
 import UserScreen from './view/UserScreen'
 import OtherScreen from './view/OtherScreen'
 
-const StackHome = createStackNavigator(
-  {
-    Home: {
-      screen: HomeScreen
-    }
-  }
-)
 
-const StackDetails = createStackNavigator(
+const StackA = createStackNavigator(
   {
-    Details: {
-      screen: DetailsScreen
-    }
-  }
-)
-
-const StackA = createBottomTabNavigator(
-  {
-    Home: StackHome,
-    Details: StackDetails
-  },
-)
-
-
-const StackB = createStackNavigator(
-  {
-    List: {
-      screen: ListScreen
-    }
-  }
-)
-
-const AppNavigator = createStackNavigator(
-  {
-    A: StackA,
-    B: StackB
+    Home: HomeScreen,
+    Details: DetailsScreen
   },
   {
-    initialRouteName: 'A',
     defaultNavigationOptions: {
       header: null
     }
+  }
+)
+
+StackA.navigationOptions = ({ navigation }) => {
+  // DetailsViews隐藏tab
+  const routeName = navigation.state.routes[navigation.state.index].routeName
+  let tabBarVisible = true
+  if (routeName === 'Details') {
+    tabBarVisible = false
+  }
+  return {
+    tabBarVisible
+  }
+}
+
+const AppNavigator = createBottomTabNavigator(
+  {
+    A: StackA,
+    B: ListScreen
+  },
+  {
+    initialRouteName: 'B'
   }
 )
 
@@ -70,70 +60,3 @@ class App extends React.Component {
 }
 
 export default App
-
-// const instructions = Platform.select({
-//   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-//   android:
-//     'Double tap R on your keyboard to reload,\n' +
-//     'Shake or press menu button for dev menu',
-// });
-
-// type Props = {};
-// export default class App extends Component<Props> {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Text style={styles.welcome}>Welcome to React Native!</Text>
-//         <Text style={styles.instructions}>To get started, edit App.js</Text>
-//         <Text style={styles.instructions}>{instructions}</Text>
-//       </View>
-//     );
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#F5FCFF',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//   },
-//   instructions: {
-//     textAlign: 'center',
-//     color: '#333333',
-//     marginBottom: 5,
-//   },
-// });
-
-// import React from "react";
-// import { View, Text } from "react-native";
-// import { createStackNavigator, createAppContainer } from "react-navigation";
-
-// class HomeScreen extends React.Component {
-//   render() {
-//     return (
-//       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-//         <Text>Home Screen</Text>
-//       </View>
-//     );
-//   }
-// }
-
-// const AppNavigator = createStackNavigator({
-//   Home: {
-//     screen: HomeScreen
-//   }
-// });
-
-// const AppContainer = createAppContainer(AppNavigator);
-
-// export default class App extends React.Component {
-//   render() {
-//     return <AppContainer />
-//   }
-// }
